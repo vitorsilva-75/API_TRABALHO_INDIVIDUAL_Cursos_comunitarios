@@ -7,7 +7,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -25,6 +28,7 @@ public class Aluno {
 	private String nome;
 	
 	/*Validação de email*/
+	@Email
 	@NotBlank(message = "Este campo deve ser preenchido")
 	@Column(name = "email", nullable = false, unique = true)
 	private String email;
@@ -39,6 +43,9 @@ public class Aluno {
 	private String cpf;
 	
 	/*Criar atributo perfil social*/
+	@OneToOne(mappedBy = "aluno")
+	/*@JsonIgnoreProperties("aluno")*/
+	private PerfilSocial perfilSocial;
 
 	
 	

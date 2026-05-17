@@ -1,5 +1,7 @@
 package org.serratec.Trabindividual.domain;
 
+import java.util.List;
+
 import org.hibernate.validator.constraints.br.CPF;
 
 import jakarta.persistence.Column;
@@ -7,7 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -24,6 +28,7 @@ public class Professor {
 	@Column(name = "nome")
 	private String nome;
 	
+	@Email
 	@NotBlank(message = "Este campo deve ser preenchido")
 	@Column(name = "email", nullable = false, unique = true)
 	private String email;
@@ -33,5 +38,6 @@ public class Professor {
 	@Column(name = "cpf", length = 11, unique = true, nullable = false)
 	private String cpf;
 	
-	/*Criar atributo curso(relacionamento)*/
+	@OneToMany(mappedBy = "professor")
+	private List<Curso> cursos;
 }

@@ -1,0 +1,14 @@
+package org.serratec.Trabindividual.enums;
+
+public enum Escolaridade {
+	ANALFABETO,
+    FUNDAMENTAL_INCOMPLETO,
+    FUNDAMENTAL_COMPLETO,
+    MEDIO_INCOMPLETO,
+    MEDIO_COMPLETO,
+    TECNICO_INCOMPLETO,
+    TECNICO_COMPLETO,
+    SUPERIOR_INCOMPLETO,
+    SUPERIOR_COMPLETO;
+
+}
