@@ -40,6 +40,68 @@ public class PerfilSocial {
 	@Enumerated
 	@Column(name = "escolaridade_maxima", nullable =false)
 	private Escolaridade escolaridadeMax;
+
+	
+	
+	public PerfilSocial() {
+		super();
+	}
+	
+	
+
+	public PerfilSocial(Long id, Aluno aluno,
+			@Positive(message = "Este valor deve ser positivo") @NotBlank(message = "Este campo não pode ser nulo") double rendaPerCapita,
+			@Positive(message = "Este valor deve ser positivo") @NotBlank(message = "Este campo não pode ser nulo") Integer qtdMoradores,
+			Escolaridade escolaridadeMax) {
+		super();
+		this.id = id;
+		this.aluno = aluno;
+		this.rendaPerCapita = rendaPerCapita;
+		this.qtdMoradores = qtdMoradores;
+		this.escolaridadeMax = escolaridadeMax;
+	}
+
+
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+
+	public double getRendaPerCapita() {
+		return rendaPerCapita;
+	}
+
+	public void setRendaPerCapita(double rendaPerCapita) {
+		this.rendaPerCapita = rendaPerCapita;
+	}
+
+	public Integer getQtdMoradores() {
+		return qtdMoradores;
+	}
+
+	public void setQtdMoradores(Integer qtdMoradores) {
+		this.qtdMoradores = qtdMoradores;
+	}
+
+	public Escolaridade getEscolaridadeMax() {
+		return escolaridadeMax;
+	}
+
+	public void setEscolaridadeMax(Escolaridade escolaridadeMax) {
+		this.escolaridadeMax = escolaridadeMax;
+	}
 	
 	
 
