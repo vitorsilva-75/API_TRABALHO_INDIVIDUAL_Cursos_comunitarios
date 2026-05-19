@@ -1,50 +1,28 @@
-package org.serratec.Trabindividual.domain;
+package org.serratec.Trabindividual.dto;
 
 import java.sql.Date;
 
+import org.serratec.Trabindividual.domain.Aluno;
+import org.serratec.Trabindividual.domain.Curso;
 import org.serratec.Trabindividual.enums.StatusMatricula;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.PastOrPresent;
-
-@Entity
-@Table(name = "matricula")
-public class Matricula {
+public class MatriculaDTOResponse {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_matricula")
 	private Long id;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_aluno", nullable = false)
 	private Aluno aluno;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_curso", nullable = false)
 	private Curso curso;
 	
-	@PastOrPresent
-	@Column(name = "data_matricula", nullable = false)
 	private Date dataMatricula;
 	
-	@Enumerated
-	@Column(nullable = false, length = 20)
 	private StatusMatricula status;
 
-	public Matricula() {
+	public MatriculaDTOResponse() {
 		super();
 	}
 
-	public Matricula(Long id, Aluno aluno, Curso curso, Date dataMatricula, StatusMatricula status) {
+	public MatriculaDTOResponse(Long id, Aluno aluno, Curso curso, Date dataMatricula, StatusMatricula status) {
 		super();
 		this.id = id;
 		this.aluno = aluno;
@@ -92,7 +70,7 @@ public class Matricula {
 	public void setStatus(StatusMatricula status) {
 		this.status = status;
 	}
+	
+	
 
-	
-	
 }
