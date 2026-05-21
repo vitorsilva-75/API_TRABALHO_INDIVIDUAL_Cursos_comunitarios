@@ -3,16 +3,23 @@ package org.serratec.Trabindividual.dto;
 import org.serratec.Trabindividual.domain.Aluno;
 import org.serratec.Trabindividual.enums.Escolaridade;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class PerfilSocialDTOResponse {
 	
+	@Schema(description = "Chave primária de identificação das características do Perfil Social do aluno.", example = "1")
 	private Long id;
 	
+	@Schema(description = "FK do aluno que sera cadastrado", example = "1")
 	private Aluno aluno;
 	
+	@Schema(description = "Media salarial por pessoa da residência", example = "1500,00")
 	private double rendaPerCapita;
 	
+	@Schema(description = "Quantidade de moradores que habitam na mesma casa que o aluno", example = "3")
 	private Integer qtdMoradores;
-
+	
+	@Schema(description = "Nivel de escolaridade do aluno", example = "FUNDAMENTAL_COMPLETO")
 	private Escolaridade escolaridadeMax;
 
 	public PerfilSocialDTOResponse() {

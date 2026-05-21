@@ -4,12 +4,23 @@ import java.util.List;
 
 import org.serratec.Trabindividual.domain.Curso;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class ProfessorDTOResponse {
 
+	@Schema(description = "Chave primária de identificação do professor", example = "1")
 	private Long id;
+	
+	@Schema(description = "Campo para preenchimento do nome do professor", example = "João Alberto da Silva")
 	private String nome;
+	
+	@Schema(description = "E-mail de cadastro do professor", example = "joao@email.com")
 	private String email;
+	
+	@Schema(description = "CPF do professor", example = "12345678911")
 	private String cpf;
+	
+	@Schema(description = "Lista com os cursos que o seguinte professor ministra")
 	private List<Curso> cursos;
 	
 	public ProfessorDTOResponse() {

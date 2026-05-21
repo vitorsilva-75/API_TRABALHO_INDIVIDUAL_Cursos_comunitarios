@@ -2,14 +2,20 @@ package org.serratec.Trabindividual.dto;
 
 import org.serratec.Trabindividual.domain.Professor;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Modelo de dados para apresentação de um curso")
 public class CursoDTOResponse {
-	
+	@Schema(description = "Chave unica de identificação da discplina", example = "1")
 	private Long id;
 	
+	@Schema(description = "Nome da discplina", example = "Ilustração em PhotoShop - Básico")
 	private String nome;
 	
+	@Schema(description = "Quantidade de horas totais da disciplina", example = "20")
 	private Integer cargaHoraria;
 	
+	@Schema(description = "FK para o registro do professor que irá ministrar a aulas da disciplina", example = "1")
 	private Professor professor;
 
 	public CursoDTOResponse() {

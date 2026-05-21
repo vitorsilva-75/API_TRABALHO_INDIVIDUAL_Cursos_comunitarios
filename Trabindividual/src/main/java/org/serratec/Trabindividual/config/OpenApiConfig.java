@@ -3,17 +3,17 @@ package org.serratec.Trabindividual.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.annotations.info.Contact;
-import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
 
 @Configuration
 public class OpenApiConfig {
 	
 	@Bean
 	public OpenAPI myOpenAPI() {
-		Contact contato = new Contact()
+		Contact contato = new Contact();
 		contato.setEmail("vitor.silva@residente.serratec.org.br");
 		contato.setName("Vitor Ribeiro");
 		contato.url("https://serratec.org/");
