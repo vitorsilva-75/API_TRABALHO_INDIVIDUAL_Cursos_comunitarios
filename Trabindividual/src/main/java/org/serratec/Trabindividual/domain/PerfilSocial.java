@@ -2,8 +2,11 @@ package org.serratec.Trabindividual.domain;
 
 import org.serratec.Trabindividual.enums.Escolaridade;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 @Entity
@@ -25,19 +29,20 @@ public class PerfilSocial {
 	
 	@OneToOne
 	@JoinColumn(name = "id_aluno",nullable = false, unique = true)
+	@JsonBackReference
 	private Aluno aluno;
 	
 	@Positive(message = "Este valor deve ser positivo")
-	@NotBlank(message = "Este campo não pode ser nulo")
+	@NotNull(message = "Este campo não pode ser nulo")
 	@Column(name = "renda_per_capita", nullable = false)
 	private double rendaPerCapita;
 	
 	@Positive(message = "Este valor deve ser positivo")
-	@NotBlank(message = "Este campo não pode ser nulo")
+	@NotNull(message = "Este campo não pode ser nulo")
 	@Column(name = "qtd_moradores_casa", nullable = false)
 	private Integer qtdMoradores;
 	
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	@Column(name = "escolaridade_maxima", nullable =false)
 	private Escolaridade escolaridadeMax;
 

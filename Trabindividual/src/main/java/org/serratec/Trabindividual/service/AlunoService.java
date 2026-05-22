@@ -9,7 +9,6 @@ import org.serratec.Trabindividual.dto.AlunoDTOResponse;
 import org.serratec.Trabindividual.exception.ResourceNotFoundException;
 import org.serratec.Trabindividual.mappers.AlunoMapper;
 import org.serratec.Trabindividual.repository.AlunoRepository;
-import org.serratec.Trabindividual.repository.PerfilSocialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +18,6 @@ public class AlunoService {
 	@Autowired
 	private AlunoRepository alunoRepository;
 	
-	@Autowired
-	private PerfilSocialRepository perfilSocialRepository;
 	
 	@Autowired
 	private AlunoMapper alunoMapper;
@@ -42,7 +39,7 @@ public class AlunoService {
 	public AlunoDTOResponse salvar(AlunoDTORequest dto) {
 		Aluno aluno = alunoMapper.paraAlunoEntity(dto);
 		
-		
+		if(dto.getPerfilSocial() != null) {
 		PerfilSocial perfilSocial = new PerfilSocial();
 		
 		perfilSocial.setEscolaridadeMax(dto.getPerfilSocial().getEscolaridadeMax());
@@ -51,9 +48,11 @@ public class AlunoService {
 		
 		perfilSocial.setRendaPerCapita(dto.getPerfilSocial().getRendaPerCapita());
 		
-		PerfilSocial perfilSalvo = perfilSocialRepository.save(perfilSocial);
+		perfilSocial.setAluno(aluno);
 		
-		aluno.setPerfilSocial(perfilSalvo);
+		aluno.setPerfilSocial(perfilSocial);
+		
+	}
 		
 		Aluno alunoSalvo = alunoRepository.save(aluno);
 		
@@ -70,7 +69,7 @@ public class AlunoService {
 			perfilSocial.setEscolaridadeMax(dto.getPerfilSocial().getEscolaridadeMax());
 			perfilSocial.setQtdMoradores(dto.getPerfilSocial().getQtdMoradores());
 			perfilSocial.setRendaPerCapita(dto.getPerfilSocial().getRendaPerCapita());
-			perfilSocialRepository.save(perfilSocial);
+			perfilSocial.setAluno(aluno);
 		}
 		
 		aluno.setNome(dto.getNome());

@@ -31,7 +31,7 @@ public class AlunoDTORequest {
 	@Schema(description = "CPF do aluno", example = "12345678911")
 	private String cpf;
 	
-	@Schema(description = "FK do perfil social do aluno contendo informações socioeconômicas", example = "")
+	@Schema(description = "FK do perfil social do aluno contendo informações socioeconômicas", example = "1")
 	private PerfilSocial perfilSocial;
 	
 	@NotBlank(message = "Você deve inserir uma senha.")
@@ -43,7 +43,6 @@ public class AlunoDTORequest {
 		super();
 	}
 
-	
 
 	public AlunoDTORequest(@NotBlank @Size(max = 80, message = "Este campo deve ser preenchido") String nome,
 			@Email @NotBlank(message = "Este campo deve ser preenchido") String email,
@@ -59,7 +58,6 @@ public class AlunoDTORequest {
 		this.perfilSocial = perfilSocial;
 		this.senha = senha;
 	}
-
 
 
 	public String getNome() {
@@ -94,14 +92,15 @@ public class AlunoDTORequest {
 		this.cpf = cpf;
 	}
 
+
 	public PerfilSocial getPerfilSocial() {
 		return perfilSocial;
 	}
 
-	public void setPerfilSocial(PerfilSocial perfilSocial) {
+
+	public void setPerfilSocial(PerfilSocial perfilSocialId) {
 		this.perfilSocial = perfilSocial;
 	}
-
 
 
 	public String getSenha() {

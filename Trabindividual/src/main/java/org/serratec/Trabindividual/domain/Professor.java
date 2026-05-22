@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +27,7 @@ public class Professor {
 	private Long id;
 
 	@NotBlank @Size(max = 80,message = "O nome do professor deve ser preenchido")
-	@Column(name = "nome")
+	@Column(name = "nome",nullable = false, length = 100)
 	private String nome;
 	
 	@Email
@@ -39,11 +41,12 @@ public class Professor {
 	private String cpf;
 	
 	@OneToMany(mappedBy = "professor")
+	@JsonIgnoreProperties("professor")
 	private List<Curso> cursos;
 	
 	@NotBlank(message = "Você deve inserir uma senha.")
-	@Size(max =11)
-	@Column(name = "senha", length = 11,nullable = false)
+	@Size(max =100)
+	@Column(name = "senha", length = 100,nullable = false)
 	private String senha;
 
 	

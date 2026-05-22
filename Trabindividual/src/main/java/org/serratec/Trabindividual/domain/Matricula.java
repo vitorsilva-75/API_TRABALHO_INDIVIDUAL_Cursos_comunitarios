@@ -1,11 +1,16 @@
 package org.serratec.Trabindividual.domain;
 
+
+
+
+
 import java.sql.Date;
 
 import org.serratec.Trabindividual.enums.StatusMatricula;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +19,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.PastOrPresent;
+
 
 @Entity
 @Table(name = "matricula")
@@ -36,7 +42,7 @@ public class Matricula {
 	@Column(name = "data_matricula", nullable = false)
 	private Date dataMatricula;
 	
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 20)
 	private StatusMatricula status;
 
@@ -81,8 +87,8 @@ public class Matricula {
 		return dataMatricula;
 	}
 
-	public void setDataMatricula(Date dataMatricula) {
-		this.dataMatricula = dataMatricula;
+	public void setDataMatricula(Date date) {
+		this.dataMatricula = date;
 	}
 
 	public StatusMatricula getStatus() {

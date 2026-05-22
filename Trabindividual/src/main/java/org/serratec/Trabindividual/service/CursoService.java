@@ -13,6 +13,8 @@ import org.serratec.Trabindividual.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class CursoService {
 	
@@ -40,7 +42,10 @@ public class CursoService {
 		}
 	
 	/*Método para criar e salvar curso - POST*/
+	@Transactional
 	public CursoDTOResponse salvar(CursoDTORequest dto) {
+		
+		
 		/*convertendo DTO para entity*/
 		Curso curso = cursoMapper.paraCursoEntity(dto);
 		
@@ -50,12 +55,13 @@ public class CursoService {
 	}
 	
 	/*Método para atualizar curso*/
+	@Transactional
 	public CursoDTOResponse atualizar(Long id, CursoDTORequest dto) {
 		/*Faz a busca de curso e professor*/
 		Curso curso = cursoRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Curso não encontrado"));
 				
-		Professor professor = professorRepository.findById(id)
+		Professor professor = professorRepository.findById(dto.getProfessorId())
 				.orElseThrow(() -> new ResourceNotFoundException("Professor não encontrado"));
 		/*Atualiza os dados do curso*/
 		curso.setNome(dto.getNome());
@@ -68,6 +74,7 @@ public class CursoService {
 	}
 	
 	/*método para deletar curso*/
+	@Transactional
 	public void deletar(Long id) {
 		Curso curso = cursoRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Curso não encontrado"));

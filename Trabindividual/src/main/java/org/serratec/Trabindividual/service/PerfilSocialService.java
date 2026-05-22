@@ -51,6 +51,12 @@ public class PerfilSocialService {
 		PerfilSocial perfilSocial = perfilSocialRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Perfil não encontrado."));
 		
+		perfilSocial.setEscolaridadeMax(dto.getEscolaridadeMax());
+
+	    perfilSocial.setQtdMoradores(dto.getQtdMoradores());
+
+	    perfilSocial.setRendaPerCapita(dto.getRendaPerCapita());
+		
 		PerfilSocial perfilSocialAtualizado = perfilSocialRepository.save(perfilSocial);
 		
 		return perfilSocialMapper.paraResponseDTO(perfilSocialAtualizado);

@@ -20,7 +20,7 @@ public class ProfessorMapper {
 		professor.setNome(dto.getNome());
 		professor.setEmail(dto.getEmail());
 		professor.setCpf(dto.getCpf());
-		professor.setCursos(dto.getCursos());
+		/*professor.setCursos(dto.getCursos());*/
 		professor.setSenha(dto.getSenha());
 		return professor;
 	}

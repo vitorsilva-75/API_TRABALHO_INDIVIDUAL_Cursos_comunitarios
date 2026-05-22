@@ -2,8 +2,9 @@ package org.serratec.Trabindividual.domain;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,13 +45,13 @@ public class Aluno {
 	private String cpf;
 	
 	
-	@OneToOne(mappedBy = "aluno")
-	@JsonIgnoreProperties("aluno")
+	@OneToOne(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private PerfilSocial perfilSocial;
 	
 	@NotBlank(message = "Você deve inserir uma senha.")
-	@Size(max = 11)
-	@Column(name = "senha", length = 11,nullable = false)
+	@Size(max = 100)
+	@Column(name = "senha", length = 100,nullable = false)
 	private String senha;
 
 	public Aluno() {

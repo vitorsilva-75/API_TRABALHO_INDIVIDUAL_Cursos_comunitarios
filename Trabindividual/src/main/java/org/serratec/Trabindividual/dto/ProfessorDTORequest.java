@@ -26,8 +26,8 @@ public class ProfessorDTORequest {
 	@Schema(description = "CPF do professor", example = "12345678911")
 	private String cpf;
 	
-	@Schema(description = "Lista com os cursos que o seguinte professor ministra")
-	private List<Curso> cursos;
+	/*@Schema(description = "Lista com os cursos que o seguinte professor ministra")
+	private List<Curso> cursos;*/
 	
 	@NotBlank(message = "Você deve inserir uma senha.")
 	@Size(max =11, message = "A senha deve possuir no máximo 11 caracteres.")
@@ -38,19 +38,23 @@ public class ProfessorDTORequest {
 		super();
 	}
 
+	
+	
+
 	public ProfessorDTORequest(
 			@NotBlank @Size(max = 80, message = "O nome do professor deve ser preenchido") String nome,
 			@Email @NotBlank(message = "O email deve ser preenchido") String email,
 			@NotBlank(message = "Você deve preencher o seu CPF") @CPF(message = "CPF inválido ou já cadastrado") String cpf,
-			List<Curso> cursos,
 			@NotBlank(message = "Você deve inserir uma senha.") @Size(max = 11, message = "A senha deve possuir no máximo 11 caracteres.") String senha) {
 		super();
 		this.nome = nome;
 		this.email = email;
 		this.cpf = cpf;
-		this.cursos = cursos;
 		this.senha = senha;
 	}
+
+
+
 
 	public String getNome() {
 		return nome;
@@ -76,13 +80,13 @@ public class ProfessorDTORequest {
 		this.cpf = cpf;
 	}
 
-	public List<Curso> getCursos() {
+	/*public List<Curso> getCursos() {
 		return cursos;
 	}
 
 	public void setCursos(List<Curso> cursos) {
 		this.cursos = cursos;
-	}
+	}*/
 
 	public String getSenha() {
 		return senha;
