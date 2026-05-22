@@ -27,26 +27,21 @@ public class AlunoService {
 
 	
 
-	/*Metodo para listar todos*/
 	public List<AlunoDTOResponse> listarTodos() {
 		List<Aluno> alunos = alunoRepository.findAll();
 		
 		return alunos.stream().map(alunoMapper :: paraResponseDTO).toList();
 	}
 	
-	/*Método para buscar aluno por ID*/
 	public AlunoDTOResponse buscarPorId(Long id) {
 		Aluno aluno = alunoRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Aluno não encontrado"));
 		return alunoMapper.paraResponseDTO(aluno);
 		}
 
-	/*Método para salvar aluno - POST*/
 	public AlunoDTOResponse salvar(AlunoDTORequest dto) {
-		/*convertendo DTO para entity*/
 		Aluno aluno = alunoMapper.paraAlunoEntity(dto);
 		
-		/*Cria o perfil Social em conjunto com o aluno*/
 		
 		PerfilSocial perfilSocial = new PerfilSocial();
 		
@@ -56,20 +51,15 @@ public class AlunoService {
 		
 		perfilSocial.setRendaPerCapita(dto.getPerfilSocial().getRendaPerCapita());
 		
-		/*Salva o perfil social*/
 		PerfilSocial perfilSalvo = perfilSocialRepository.save(perfilSocial);
 		
-		/*Associa com aluno*/
 		aluno.setPerfilSocial(perfilSalvo);
 		
-		/*Salva o aluno*/
 		Aluno alunoSalvo = alunoRepository.save(aluno);
 		
-		/*REsponde o DTO response*/
 		return alunoMapper.paraResponseDTO(alunoSalvo);
 	}
 	
-	/*Método para atualizar cadastro*/
 	public AlunoDTOResponse atualizar(Long id, AlunoDTORequest dto) {
 		Aluno aluno = alunoRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Aluno não encontrado"));
@@ -100,7 +90,6 @@ public class AlunoService {
 		return alunoMapper.paraResponseDTO(alunoAtualizado);
 	}
 	
-	/*Método para deletar aluno*/
 	public void deletar(Long id) {
 		Aluno aluno = alunoRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Aluno não encontrado"));

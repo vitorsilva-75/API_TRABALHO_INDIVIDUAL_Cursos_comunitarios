@@ -1,22 +1,54 @@
 package org.serratec.Trabindividual.mappers;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.serratec.Trabindividual.domain.Aluno;
 import org.serratec.Trabindividual.dto.AlunoDTORequest;
 import org.serratec.Trabindividual.dto.AlunoDTOResponse;
+import org.springframework.stereotype.Component;
 
 
 
-@Mapper(componentModel = "spring")
-public interface AlunoMapper {
+@Component
+public class AlunoMapper {
 
-	@Mapping(target = "id", ignore = true)
-	Aluno paraAlunoEntity(AlunoDTORequest dto);
+	public Aluno paraAlunoEntity(AlunoDTORequest dto) {
+		if (dto == null) {
+			return null;
+		}
+		Aluno aluno = new Aluno();
+		aluno.setNome(dto.getNome());
+		aluno.setCidade(dto.getCidade());
+		aluno.setCpf(dto.getCpf());
+		aluno.setEmail(dto.getEmail());
+		aluno.setSenha(dto.getSenha());
+		return aluno;
+	}
 	
-	AlunoDTOResponse paraResponseDTO(Aluno entity);
+	public AlunoDTOResponse paraResponseDTO(Aluno aluno) {
+		if (aluno == null) {
+			return null;
+		}
+		AlunoDTOResponse dto = new AlunoDTOResponse();
+		dto.setId(aluno.getId());
+		dto.setNome(aluno.getNome());
+		dto.setEmail(aluno.getEmail());
+		dto.setCidade(aluno.getCidade());
+
+		return dto;
+	}
 	
-	List<AlunoDTOResponse> paraListarAlunoDTOResponse(List<Aluno> alunos);
+	public List<AlunoDTOResponse> paraListarAlunoDTOResponse(List<Aluno> alunos) {
+		if (alunos == null) {
+	        return null;
+	    }
+
+	    List<AlunoDTOResponse> listaDto = new ArrayList<>(alunos.size());
+	    for (Aluno aluno : alunos) {
+	        listaDto.add(paraResponseDTO(aluno));
+	    }
+	    
+	    return listaDto;
+	}
 }
