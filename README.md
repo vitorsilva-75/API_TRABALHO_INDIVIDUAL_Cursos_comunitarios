@@ -53,3 +53,28 @@ O sistema permite:
 ---
 
 ## 📊 Estrutura do projeto
+org.serratec.Trabindividual
+│
+├── domain # Entidades JPA
+├── dto # Objetos de requisição e resposta
+├── service # Regras de negócio
+├── repository # Acesso ao banco de dados
+├── mappers # Conversão Entity ↔ DTO
+├── enums # Enumerações
+├── exception # Tratamento de exceções
+└── controller # Endpoints REST
+
+---
+
+## ⚙️ Configuração do banco de dados
+
+Configure no arquivo `application.properties`:
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/TrabalhoIndividual
+spring.datasource.username=seu_usuario
+spring.datasource.password=sua_senha
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
